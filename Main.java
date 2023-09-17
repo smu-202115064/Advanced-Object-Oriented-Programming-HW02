@@ -35,12 +35,12 @@ class MyStack<E> implements Iterable<E> {
         private int index;
 
         private MyStackIterator() {
-            index = 0;
+            index = data.size();
         }
 
         @Override
         public boolean hasNext() {
-            return index < data.size();
+            return index > 0;
         }
 
         @Override
@@ -48,7 +48,8 @@ class MyStack<E> implements Iterable<E> {
             if (!hasNext()) {
                 throw new IndexOutOfBoundsException();
             }
-            return data.get(index++);
+            index--;
+            return data.get(index);
         }
     }
 }

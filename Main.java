@@ -1,20 +1,29 @@
+import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.Iterator;
 
 class MyStack<E> implements Iterable<E> {
-    public MyStack() {
+    protected ArrayList<E> data;
 
+    public MyStack() {
+        data = new ArrayList<>();
     }
 
     public void push(E e) {
-
+        data.add(e);
     }
 
     public E pop() {
-        return null;
+        if (data.isEmpty()) {
+            throw new EmptyStackException();
+        }
+        E top = data.get(data.size()-1);
+        data.remove(data.size()-1);
+        return top;
     }
 
     public boolean isEmpty() {
-        return false;
+        return data.isEmpty();
     }
 
     @Override

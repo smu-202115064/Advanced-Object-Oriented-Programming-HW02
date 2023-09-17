@@ -3,6 +3,30 @@ import java.util.EmptyStackException;
 import java.util.Iterator;
 
 class MyStack<E> implements Iterable<E> {
+    private static class MyStackIterator<E> implements Iterator<E> {
+        private final MyStack<E> stack;
+        private int index;
+
+        private MyStackIterator(MyStack<E> s) {
+            stack = s;
+            index = s.data.size();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return index > 0;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new IndexOutOfBoundsException();
+            }
+            index--;
+            return stack.data.get(index);
+        }
+    }
+
     protected ArrayList<E> data;
 
     public MyStack() {
@@ -28,29 +52,7 @@ class MyStack<E> implements Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new MyStackIterator();
-    }
-
-    private class MyStackIterator implements Iterator<E> {
-        private int index;
-
-        private MyStackIterator() {
-            index = data.size();
-        }
-
-        @Override
-        public boolean hasNext() {
-            return index > 0;
-        }
-
-        @Override
-        public E next() {
-            if (!hasNext()) {
-                throw new IndexOutOfBoundsException();
-            }
-            index--;
-            return data.get(index);
-        }
+        return new MyStackIterator<>(this);
     }
 }
 

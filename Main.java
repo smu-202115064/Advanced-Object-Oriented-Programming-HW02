@@ -19,6 +19,19 @@ class MyStack<E> implements Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
+        return new MyStackIterator<>();
+    }
+}
+
+class MyStackIterator<E> implements Iterator<E> {
+
+    @Override
+    public boolean hasNext() {
+        return false;
+    }
+
+    @Override
+    public E next() {
         return null;
     }
 }

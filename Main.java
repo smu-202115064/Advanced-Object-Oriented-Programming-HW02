@@ -1,3 +1,28 @@
+import java.util.Iterator;
+
+class MyStack<E> implements Iterable<E> {
+    public MyStack() {
+
+    }
+
+    public void push(E e) {
+
+    }
+
+    public E pop() {
+        return null;
+    }
+
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return null;
+    }
+}
+
 public class Main {
     public static void main(String[] args) {
         MyStack<Integer> intStack = new MyStack<>();

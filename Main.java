@@ -28,20 +28,28 @@ class MyStack<E> implements Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new MyStackIterator<>();
-    }
-}
-
-class MyStackIterator<E> implements Iterator<E> {
-
-    @Override
-    public boolean hasNext() {
-        return false;
+        return new MyStackIterator();
     }
 
-    @Override
-    public E next() {
-        return null;
+    private class MyStackIterator implements Iterator<E> {
+        private int index;
+
+        private MyStackIterator() {
+            index = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return index < data.size();
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new IndexOutOfBoundsException();
+            }
+            return data.get(index++);
+        }
     }
 }
 
